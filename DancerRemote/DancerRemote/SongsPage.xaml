@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="DancerRemote.SongsPage"
+             xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Title="Library">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Clicked="MenuItem_OnClicked"
+                     IconImageSource="add"
+                     Order="Primary" />
+    </ContentPage.ToolbarItems>
+
+    <Grid>
+
+        <CollectionView x:Name="SongsList"
+                        ItemsSource="{Binding Files}"
+                        SelectionChanged="SongsList_OnSelectionChanged"
+                        SelectionMode="Single">
+            <CollectionView.EmptyView>
+                <Grid HorizontalOptions="CenterAndExpand" VerticalOptions="Center">
+                    <Label FontSize="Medium"
+                           HorizontalTextAlignment="Center"
+                           Text="No songs available"
+                           VerticalTextAlignment="Center" />
+                </Grid>
+            </CollectionView.EmptyView>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Label FontAttributes="Bold"
+                               FontSize="Medium"
+                               Text="{Binding FileName}"
+                               TextColor="Black" />
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <ActivityIndicator x:Name="activityIndicator"
+                           HorizontalOptions="CenterAndExpand"
+                           IsRunning="False"
+                           VerticalOptions="CenterAndExpand" />
+
+    </Grid>
+</ContentPage>
